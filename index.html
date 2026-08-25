@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Special 4 U 💗</title>
+<style>
+  :root{
+    --pink:#ff2d75;
+    --black:#0a0a0a;
+    --red:#e6193c;
+    --blue:#2b6cff;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  body{
+    min-height:100vh;
+    background:
+      radial-gradient(circle at 20% 20%, rgba(255,45,117,0.25), transparent 40%),
+      radial-gradient(circle at 80% 30%, rgba(43,108,255,0.2), transparent 45%),
+      radial-gradient(circle at 50% 90%, rgba(230,25,60,0.25), transparent 45%),
+      var(--black);
+    color:#fff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    padding:40px 20px;
+    overflow-x:hidden;
+    position:relative;
+  }
+
+  .card{
+    max-width:720px;
+    background:rgba(255,255,255,0.04);
+    border:1px solid rgba(255,45,117,0.4);
+    border-radius:20px;
+    padding:40px 32px;
+    backdrop-filter:blur(6px);
+    box-shadow:0 0 40px rgba(255,45,117,0.25), 0 0 80px rgba(43,108,255,0.1);
+    text-align:center;
+    z-index:2;
+  }
+
+  h1{
+    font-size:2.2rem;
+    margin-bottom:20px;
+    background:linear-gradient(90deg,var(--pink),var(--red),var(--blue));
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+    letter-spacing:1px;
+  }
+
+  p.body-text{
+    font-size:1.05rem;
+    line-height:1.8;
+    color:#f2f2f2;
+    text-align:left;
+    margin-bottom:30px;
+  }
+
+  p.body-text span{
+    color:var(--pink);
+    font-weight:600;
+  }
+
+  .btn{
+    position:relative;
+    border:none;
+    outline:none;
+    cursor:pointer;
+    padding:16px 34px;
+    font-size:1.1rem;
+    font-weight:700;
+    letter-spacing:0.5px;
+    color:#fff;
+    border-radius:50px;
+    background:linear-gradient(90deg,var(--pink),var(--red));
+    box-shadow:0 0 20px rgba(255,45,117,0.6);
+    transition:transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .btn:hover{
+    transform:scale(1.06);
+    box-shadow:0 0 35px rgba(255,45,117,0.9), 0 0 50px rgba(43,108,255,0.4);
+  }
+
+  .btn:active{
+    transform:scale(0.96);
+  }
+
+  .heart-icon{
+    margin-left:8px;
+    display:inline-block;
+    animation:pulse 1.2s infinite ease-in-out;
+  }
+
+  @keyframes pulse{
+    0%,100%{transform:scale(1);}
+    50%{transform:scale(1.25);}
+  }
+
+  /* Falling hearts */
+  .heart-fall{
+    position:fixed;
+    top:-10%;
+    font-size:1.5rem;
+    pointer-events:none;
+    user-select:none;
+    animation-name:fall;
+    animation-timing-function:linear;
+    animation-fill-mode:forwards;
+    z-index:1;
+  }
+
+  @keyframes fall{
+    0%{
+      transform:translateY(0) rotate(0deg);
+      opacity:1;
+    }
+    100%{
+      transform:translateY(110vh) rotate(360deg);
+      opacity:0.2;
+    }
+  }
+
+  footer{
+    margin-top:20px;
+    font-size:0.85rem;
+    color:rgba(255,255,255,0.5);
+    z-index:2;
+  }
+</style>
+</head>
+<body>
+
+  <div class="card">
+    <h1>For You 💗</h1>
+    <p class="body-text">
+      From the very first time we talked, I could tell there was something different about you — the way you carry yourself in every single word, the confidence woven into your sentences, the effortless charm that spills out even through a screen. I have never seen your face, never stood beside you, never watched the way the light catches your eyes, and yet somehow I already know you're breathtaking, because <span>beauty like yours doesn't need to be seen to be felt</span> — it shows in the way you speak, the way you carry your thoughts, the way you turn ordinary conversations into something I actually look forward to. You have this energy, this quiet kind of confidence that screams baddie without even trying, the kind that doesn't need validation because you already know exactly who you are. There's a sharpness to the way you express yourself, a wit that catches me off guard, a warmth underneath it all that makes every message feel like it means something. You're not just pretty in the ordinary sense of the word — you're magnetic, you're unforgettable, you're the kind of person people write long paragraphs about at midnight because words don't feel like enough. Every little thing about you — your humor, your attitude, the way you never fail to leave an impression — tells me that whoever gets to actually know you is lucky beyond words. So here I am, without ever having seen your face, completely convinced that you are one of the most special, most beautiful, most stunning people I have ever had the chance to talk to, and I just wanted you to know that, even if it's through nothing more than a screen and a few paragraphs of text.
+    </p>
+    <button class="btn" id="specialBtn">Special 4 U <span class="heart-icon">💗</span></button>
+  </div>
+
+  <footer>made with 💗 just for you</footer>
+
+  <script>
+    const btn = document.getElementById('specialBtn');
+    const hearts = ['💗','💖','❤️','💙'];
+    let rainInterval = null;
+
+    function createHeart(){
+      const heart = document.createElement('div');
+      heart.classList.add('heart-fall');
+      heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+      heart.style.left = Math.random() * 100 + 'vw';
+      const duration = 3 + Math.random() * 3; // 3-6s
+      heart.style.animationDuration = duration + 's';
+      heart.style.fontSize = (1 + Math.random() * 1.5) + 'rem';
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, duration * 1000);
+    }
+
+    function startRain(){
+      if(rainInterval) return;
+      rainInterval = setInterval(createHeart, 150);
+      // burst on click too
+      for(let i = 0; i < 20; i++){
+        setTimeout(createHeart, i * 40);
+      }
+      // stop the continuous rain after a while so it doesn't run forever
+      setTimeout(() => {
+        clearInterval(rainInterval);
+        rainInterval = null;
+      }, 6000);
+    }
+
+    btn.addEventListener('click', startRain);
+  </script>
+
+</body>
+</html>
